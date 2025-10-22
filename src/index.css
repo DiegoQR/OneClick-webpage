@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@theme {
+    --font-roboto: "Poppins", sans-serif;
+
+    --color-orange: #FE7743;
+    --color-blue: #273F4F;
+    --color-blue-light: #447D9B;
+    --color-grey: #D7D7D7;
+    --color-light-grey: #f1f1f1;
+}
+
+:body {
+    font-family: var(--font-roboto);
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-light-grey);
+}
