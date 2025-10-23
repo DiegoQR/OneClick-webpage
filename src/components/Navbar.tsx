@@ -9,32 +9,38 @@ gsap.registerPlugin(Observer);
 
 export default function Navbar() {
 
-    useGSAP(() => {
-        // Animation for hover effects
-        Observer.create({
-            target: ".hover-target",
-            type: 'hover',
-            onHover: (e) => {
-                gsap.to(e.target, {
-                    scale: 1.1,
-                    duration: 0.3,
-                    ease: 'power2.out',
-                });
-            }
-        });
-    }, []);
+  useGSAP((_, contextSafe) => {
+      // Animation for hover effects
+      const hoverInAnimation = contextSafe!((e : HTMLElement) => {
+          gsap.to(e, {
+              duration: 0.5,
+              color: '#FE7743',
+          })
+      });
+      const hoverOutAnimation = contextSafe!((e : HTMLElement) => {
+          gsap.to(e, {
+              duration: 0.5,
+              color: '#FFFFFF',
+          });
+      });
+      document.querySelectorAll('.hover-target').forEach((element) => {
+        element.addEventListener('mouseenter', () => hoverInAnimation(element as HTMLElement));
+        element.addEventListener('mouseleave', () => hoverOutAnimation(element as HTMLElement));
+      });
+  }, []);
+
   return (
-    <nav className='flex justify-between items-center px-10 bg-blue-light'>
+    <nav className='flex justify-between items-stretch px-20 bg-blue-light'>
       <img src={Logo} alt="Logo" />
-      <ul className='flex gap-5 font-bold text-lg text-white'>
-        <li>
-            <a className='hover-target'>Inicio</a>
+      <ul className='flex gap-10 items-stretch font-bold text-lg text-white'>
+        <li className='hover-target flex items-center border-b-5 border-orange'>
+            <a>INICIO</a>
         </li>
-        <li>
-            <a className='hover-target'>Nuestros Servicios</a>
+        <li className='hover-target flex items-center border-b-5 border-orange'>
+            <a>NUESTROS SERVICIOS</a>
         </li>
-        <li>
-            <a className='hover-target'>Contacto</a>
+        <li className='hover-target flex items-center border-b-5 border-orange'>
+            <a>CONTACTO</a>
         </li>
       </ul>
     </nav>
