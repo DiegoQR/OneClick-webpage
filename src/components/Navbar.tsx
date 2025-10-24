@@ -34,8 +34,8 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className='flex justify-between items-stretch px-20 bg-blue-light'>
-      <img src={Logo} alt="Logo" className='h-20'/>
+    <nav className='flex justify-between items-stretch px-20 bg-blue'>
+      <img src={Logo} alt="Logo" className='h-15'/>
       <ul className='flex items-stretch font-bold text-sm text-white'>
         <li className='hover-target flex items-center px-10 relative cursor-pointer'>
             <a className='z-1'>INICIO</a>
