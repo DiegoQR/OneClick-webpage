@@ -12,16 +12,20 @@ export default function Navbar() {
   useGSAP((_, contextSafe) => {
       // Animation for hover effects
       const hoverInAnimation = contextSafe!((e : HTMLElement) => {
-          gsap.to(e, {
-              duration: 0.5,
-              color: '#FE7743',
-          })
+        gsap.set(e.getElementsByTagName('div'), {scaleY: 0, backgroundColor: '#FE7743', transformOrigin: 'bottom'});
+        gsap.to(e.getElementsByTagName('div'), 
+        { 
+          scaleY: 1, 
+          duration: 0.5, 
+          ease: 'bounce.out',
+        });
       });
       const hoverOutAnimation = contextSafe!((e : HTMLElement) => {
-          gsap.to(e, {
-              duration: 0.5,
-              color: '#FFFFFF',
-          });
+        gsap.to(e.getElementsByTagName('div'), 
+        { 
+          scaleY: 0, 
+          duration: 0.5,
+        });
       });
       document.querySelectorAll('.hover-target').forEach((element) => {
         element.addEventListener('mouseenter', () => hoverInAnimation(element as HTMLElement));
@@ -31,16 +35,19 @@ export default function Navbar() {
 
   return (
     <nav className='flex justify-between items-stretch px-20 bg-blue-light'>
-      <img src={Logo} alt="Logo" />
-      <ul className='flex gap-10 items-stretch font-bold text-lg text-white'>
-        <li className='hover-target flex items-center border-b-5 border-orange'>
-            <a>INICIO</a>
+      <img src={Logo} alt="Logo" className='h-20'/>
+      <ul className='flex items-stretch font-bold text-sm text-white'>
+        <li className='hover-target flex items-center px-10 relative cursor-pointer'>
+            <a className='z-1'>INICIO</a>
+            <div className='w-full h-full absolute inset-x-0 bottom-0'></div>
         </li>
-        <li className='hover-target flex items-center border-b-5 border-orange'>
-            <a>NUESTROS SERVICIOS</a>
+        <li className='hover-target flex items-center px-10 relative cursor-pointer'>
+            <a className='z-1'>NUESTROS SERVICIOS</a>
+            <div className='w-full h-full absolute inset-x-0 bottom-0'></div>
         </li>
-        <li className='hover-target flex items-center border-b-5 border-orange'>
-            <a>CONTACTO</a>
+        <li className='hover-target flex items-center px-10 relative cursor-pointer'>
+            <a className='z-1'>CONTACTO</a>
+            <div className='w-full h-full absolute inset-x-0 bottom-0'></div>
         </li>
       </ul>
     </nav>
